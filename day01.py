@@ -2,6 +2,7 @@ import re
 
 
 def part01(day01_input_lines: list) -> None:
+    # working
     regex = re.compile(r'\D')
     total_sum = 0
     for line in day01_input_lines:
@@ -12,6 +13,7 @@ def part01(day01_input_lines: list) -> None:
 
 
 def part02(day01_input_lines):
+    # not yet working
     regex = re.compile(r'\D')
     number_replacement_re = [(re.compile(r'nine'), '9'),
                              (re.compile(r'eight'), '8'),
