@@ -1,9 +1,18 @@
 import day01
 import day02
-
+import day03
 
 if __name__ == '__main__':
-    today = '02'
+    today = '03'
+
+
+    if today == '03':
+        input_file = f'problem_inputs/day{today}_input.txt'
+        with open(input_file) as day_fp:
+            day_input = day_fp.readlines()
+            day_input = [f'{i}'.strip() for i in day_input]
+            day03.part01(day_input)
+            day03.part02(day_input)
 
     if today == '02':
         input_file = f'problem_inputs/day{today}_input.txt'
