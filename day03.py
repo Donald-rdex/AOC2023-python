@@ -22,7 +22,7 @@ class bcolors:
 
 
 def part01(day_input):
-    # not working yet.
+    # Working!
     # read each digit of a part number, until next '.', storing indexes of numbers in the line
     # store the number, the starting location, the part location and the part symbol.
     engine_parts = []
@@ -33,15 +33,13 @@ def part01(day_input):
         found_part = False
         for idx in range(len(line)):
             if line[idx].isdigit() and line[idx] in '0123456789':
-                if found_part is False:
+                if not found_part:
                     current_part.part_number = line[idx]
                     current_part.part_location_idx = idx
                     current_part.part_location_line = line_number
-                    found_part = True
                 else:
                     current_part.part_number += line[idx]
-                    found_part = True
-
+                found_part = True
             else:
                 if found_part:
                     engine_parts.append(current_part)
@@ -55,6 +53,8 @@ def part01(day_input):
                     print(f'{bcolors.OKGREEN}{line[idx]}{bcolors.ENDC}', end='')
                 else:
                     print(f'{line[idx]}', end='')
+        if current_part.part_number is not None:
+            engine_parts.append(current_part)
         print('')
         line_number += 1
 
@@ -78,7 +78,9 @@ def part01(day_input):
             col_before = 0
         col_after = starting_idx + len(ep.part_number) + 1
         if col_after >= len(day_input[starting_line]):
+
             col_after = len(day_input[starting_line])
+            print(f'{ep.part_location_line}: {ep.part_number}: {col_after}')
 
         for curr_col in range(col_before, col_after):
             line_above_ch = day_input[line_above][curr_col]
