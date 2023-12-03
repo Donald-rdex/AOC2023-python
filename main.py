@@ -5,9 +5,9 @@ import day03
 if __name__ == '__main__':
     today = '03'
 
-
     if today == '03':
         input_file = f'problem_inputs/day{today}_input.txt'
+        input_file = f'problem_inputs/day{today}_test.txt'
         with open(input_file) as day_fp:
             day_input = day_fp.readlines()
             day_input = [f'{i}'.strip() for i in day_input]
