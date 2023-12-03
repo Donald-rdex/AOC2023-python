@@ -1,5 +1,3 @@
-
-
 class EnginePart:
     def __init__(self, part_number, part_location_idx, part_location_line, part_symbol, part_sym_line, part_sym_idx):
         self.part_number = part_number
@@ -8,6 +6,7 @@ class EnginePart:
         self.part_symbol = part_symbol
         self.part_sym_line = part_sym_line
         self.part_sym_idx = part_sym_idx
+
 
 class bcolors:
     HEADER = '\033[95m'
@@ -78,7 +77,6 @@ def part01(day_input):
             col_before = 0
         col_after = starting_idx + len(ep.part_number) + 1
         if col_after >= len(day_input[starting_line]):
-
             col_after = len(day_input[starting_line])
             print(f'{ep.part_location_line}: {ep.part_number}: {col_after}')
 
@@ -109,9 +107,34 @@ def part01(day_input):
             # print(f'{ep.part_number}: {ep.part_symbol}')
             part_sum += int(ep.part_number)
         # else:
-            # print(f'{ep.part_number}: {ep.part_location_line}: ...')
+        # print(f'{ep.part_number}: {ep.part_location_line}: ...')
 
     print(part_sum)
+    return engine_parts
+
 
 def part02(day_input):
-    pass
+    # WIP
+    engine_parts = part01(day_input)
+
+    found_parts = []
+
+    part_sum = 0
+    for ep in engine_parts:
+        if ep.part_symbol == '*':
+            # find ep with same part_sym_line & part_sym_idx & multiply...
+            if ep in found_parts:
+                continue
+
+            found_parts.append(ep)
+            # O(n^2) is cruise control for cool
+            for epl in engine_parts:
+                if epl.part_sym_idx == ep.part_sym_idx \
+                        and epl.part_sym_line == ep.part_sym_line \
+                        and epl != ep \
+                        and epl not in found_parts:
+                    found_parts.append(epl)
+                    part_sum += int(ep.part_number) * int(epl.part_number)
+                    break
+
+    print(part_sum)
