@@ -6,6 +6,16 @@ import day04
 if __name__ == '__main__':
     today = '04'
 
+    input_file = f'problem_inputs/day{today}_input.txt'
+    # input_file = f'problem_inputs/test_input.txt'
+
+    with open(input_file) as day_fp:
+        day_input = day_fp.readlines()
+        day_input = [f'{i}'.strip() for i in day_input]
+        if today == '05':
+            day05.part01(day_input)
+            day05.part02(day_input)
+
     if today == '04':
         input_file = f'problem_inputs/day{today}_input.txt'
         # input_file = f'problem_inputs/test_input.txt'
