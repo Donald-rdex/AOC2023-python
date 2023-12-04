@@ -5,6 +5,7 @@ class LottoCard:
         self.card_number = card_number
         self.winning_numbers = list_of_winning_numbers
         self.played_number = list_of_played_numbers
+        self.copies = 1
 
     def points(self):
         card_points = 0
@@ -43,21 +44,16 @@ def part01(input_lines):
     return cards
 
 
-def add_winning_cards(cards, index, wins):
-    new_cards = []
-    for card_idx in range(index, index+wins):
-        if (wins:=cards[card_idx].wins()) > 0:
-            new_cards.append(add_winning_cards(cards, card_idx, wins))
-    return new_cards
-
-
 def part02(input_lines):
-    # not working yet
+    # working!
     cards = part01(input_lines)
-    new_card_list = []
-    total_wins = 0
+
     for (index, card) in enumerate(cards):
         if (wins := card.wins()) > 0:
-            total_wins += wins
+            card_idx = index + 1
+            while wins > 0:
+                cards[card_idx].copies += card.copies
+                wins -= 1
+                card_idx += 1
 
-    print(total_wins)
+    print(sum([card.copies for card in cards]))
