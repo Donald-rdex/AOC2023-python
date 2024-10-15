@@ -2,19 +2,38 @@ import day01
 import day02
 import day03
 import day04
+import day05
+
+from y2020_d02 import Y2020D02
+
 
 if __name__ == '__main__':
-    today = '04'
+    today = '2020'
 
-    input_file = f'problem_inputs/day{today}_input.txt'
-    # input_file = f'problem_inputs/test_input.txt'
-
+    input_file = f'problem_inputs/aoc_2020_02_input.txt'
     with open(input_file) as day_fp:
         day_input = day_fp.readlines()
         day_input = [f'{i}'.strip() for i in day_input]
-        if today == '05':
-            day05.part01(day_input)
-            day05.part02(day_input)
+
+        aoc2020d2 = Y2020D02(day_input)
+        aoc2020d2.day01()
+        aoc2020d2.day02()
+
+
+    if today == '05' or today == '06':
+        # input_file = f'problem_inputs/day{today}_input.txt'
+        input_file = f'problem_inputs/test_input.txt'
+
+        with open(input_file) as day_fp:
+            day_input = day_fp.readlines()
+            day_input = [f'{i}'.strip() for i in day_input]
+
+            if today == '05':
+                day05.part01(day_input)
+                day05.part02(day_input)
+            if today == '06':
+                day05.part01(day_input)
+                day05.part02(day_input)
 
     if today == '04':
         input_file = f'problem_inputs/day{today}_input.txt'
